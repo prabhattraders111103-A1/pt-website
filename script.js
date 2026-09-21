@@ -2,19 +2,21 @@ const menuToggle = document.querySelector('.menu-toggle');
 const nav = document.querySelector('.main-nav');
 
 if (menuToggle && nav) {
+  const setMobileNavState = (isOpen) => {
+    nav.classList.toggle('is-open', isOpen);
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.textContent = isOpen ? '✕' : '☰';
+  };
+
   menuToggle.addEventListener('click', () => {
-    const isOpen = nav.style.display === 'flex';
-    nav.style.display = isOpen ? 'none' : 'flex';
-    nav.style.position = 'absolute';
-    nav.style.top = '84px';
-    nav.style.left = '16px';
-    nav.style.right = '16px';
-    nav.style.flexDirection = 'column';
-    nav.style.padding = '18px';
-    nav.style.background = 'rgba(255,255,255,0.75)';
-    nav.style.border = '1px solid rgba(28,26,24,0.08)';
-    nav.style.borderRadius = '18px';
-    nav.style.boxShadow = '0 16px 40px rgba(26,20,13,0.08)';
+    const isOpen = !nav.classList.contains('is-open');
+    setMobileNavState(isOpen);
+  });
+
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) {
+      setMobileNavState(false);
+    }
   });
 }
 
