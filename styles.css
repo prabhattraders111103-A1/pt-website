@@ -687,7 +687,9 @@ h1, h2, h3, h4, h5 {
 
 .site-footer h5 {
   margin-bottom: 14px;
-  font-size: 2.1rem;
+  font-size: 1.25rem; /* Reduced from 2.1rem for better proportions */
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .site-footer ul {
